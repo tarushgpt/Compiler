@@ -38,36 +38,7 @@ public class Condition
         int leftVal = left.eval(env);
         int rightVal = right.eval(env);
         
-        //i want to use a switch case here, but checkstyle is saying no. so i made ifs :(
-        
-        if (relop.equals("="))
-        {
-            return leftVal == rightVal;
-        }
-        else if (relop.equals("<>"))
-        {
-            return leftVal != rightVal;
-        }
-        else if (relop.equals("<"))
-        {
-            return leftVal < rightVal;
-        }
-        else if (relop.equals(">"))
-        {
-            return leftVal > rightVal;
-        }
-        else if (relop.equals("<="))
-        {
-            return leftVal <= rightVal;
-        }
-        else if (relop.equals(">="))
-        {
-            return leftVal >= rightVal;
-        }
-        throw new RuntimeException("don't know what ts is: " + relop);
-        
-        /**
-         * switch (relop)
+        switch (relop)
         {
             case "=":
                 return leftVal == rightVal;
@@ -84,8 +55,6 @@ public class Condition
             default:
                 throw new RuntimeException("don't know what ts is: " + relop);
         }
-         */
-        
     }
     
     /**
@@ -100,33 +69,28 @@ public class Condition
         right.compile(e);
         e.emitPop("$t0");
         
-        if (relop.equals("="))
+        switch (relop)
         {
-            e.emit("bne $t0 $v0 " + targetLabel + "\t#branch if not equal");
-        }
-        else if (relop.equals("<>"))
-        {
-            e.emit("beq $t0 $v0 " + targetLabel + "\t#branch if equal");
-        }
-        else if (relop.equals("<"))
-        {
-            e.emit("bge $t0 $v0 " + targetLabel + "\t#branch if >=");
-        }
-        else if (relop.equals(">"))
-        {
-            e.emit("ble $t0 $v0 " + targetLabel + "\t#branch if <=");
-        }
-        else if (relop.equals("<="))
-        {
-            e.emit("bgt $t0 $v0 " + targetLabel + "\t#branch if >");
-        }
-        else if (relop.equals(">="))
-        {
-            e.emit("blt $t0 $v0 " + targetLabel + "\t#branch if <");
-        }
-        else
-        {
-            throw new RuntimeException("Unknown relop: " + relop);
+            case "=":
+                e.emit("bne $t0 $v0 " + targetLabel);
+                return;
+            case "<>":
+                e.emit("beq $t0 $v0 " + targetLabel);
+                return;
+            case "<":
+                e.emit("bge $t0 $v0 " + targetLabel);
+                return;
+            case ">":
+                e.emit("ble $t0 $v0 " + targetLabel);
+                return;
+            case "<=":
+                e.emit("bgt $t0 $v0 " + targetLabel);
+                return;
+            case ">=":
+                e.emit("blt $t0 $v0 " + targetLabel);
+                return;
+            default:
+                throw new RuntimeException("what is this bro " + relop);
         }
     }
 }

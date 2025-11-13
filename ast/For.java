@@ -53,6 +53,38 @@ public class For extends Statement
      */
     public void compile(Emitter e)
     {
-        //nothing for now lol
+        int labelID = e.nextLabelID();
+        String startLabel = "startfor" + labelID;
+        String endLabel = "endfor" + labelID;
+        
+
+        startExpr.compile(e);
+        e.emit("la $t0 var" + varName);
+        e.emit("sw $v0 ($t0)");
+        
+        e.emit(startLabel + ":");
+        
+        e.emit("la $t0 var" + varName);
+        e.emit("lw $v0 ($t0)");
+        e.emit("subu $sp $sp 4"); 
+        e.emit("sw $v0 ($sp)");
+        
+        endExpr.compile(e);
+        e.emit("lw $t0 ($sp) #pop loop variable");
+        e.emit("addu $sp $sp 4");
+        
+        e.emit("bgt $t0 $v0 " + endLabel);
+        
+        body.compile(e);
+        
+        e.emit("la $t0 var" + varName);
+        e.emit("lw $v0 ($t0)");
+        e.emit("addi $v0 $v0 1");
+        e.emit("la $t0 var" + varName);
+        e.emit("sw $v0 ($t0)");
+        
+        e.emit("j " + startLabel);
+        
+        e.emit(endLabel + ":");
     }
 }

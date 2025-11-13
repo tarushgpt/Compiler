@@ -58,6 +58,6 @@ public class ProcedureCall extends Expression
      */
     public void compile(Emitter e)
     {
-        throw new RuntimeException("Procedure call compilation not yet implemented");
+        //we dont have procedures yet, this is for subroutines
     }
 }

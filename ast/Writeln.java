@@ -37,12 +37,12 @@ public class Writeln extends Statement
     public void compile(Emitter e)
     {
         exp.compile(e);
-        e.emit("move $a0, $v0\t#prepare to print");
-        e.emit("li $v0, 1\t#print integer");
+        e.emit("move $a0, $v0");
+        e.emit("li $v0, 1");
         e.emit("syscall");
         
-        e.emit("li $a0, 10\t#newline character");
-        e.emit("li $v0, 11\t#print character");
+        e.emit("li $a0, 10");
+        e.emit("li $v0, 11");
         e.emit("syscall");
     }
 }

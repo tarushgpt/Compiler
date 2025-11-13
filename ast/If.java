@@ -47,6 +47,6 @@ public class If extends Statement
         String endLabel = "endif" + labelID;
         condition.compile(e, endLabel);
         thenStmt.compile(e);
-        e.emit(endLabel + ":\t#end of if");
+        e.emit(endLabel + ":");
     }
 }

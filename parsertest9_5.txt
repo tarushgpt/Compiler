@@ -16,9 +16,13 @@ BEGIN
 		x := x + 2;
 	END;
 	sum := 0;	
-	FOR i := 1 TO 5 DO	BEGIN		sum := sum + i;		WRITELN(sum);	END;
+	FOR i := 1 TO 5 DO
+	BEGIN
+		sum := sum + i;
+		WRITELN(sum);
+	END;
 	READLN(b);
-	IF (b < 10)
+	IF b < 10 THEN
 		WRITELN(b);
 END;
 .

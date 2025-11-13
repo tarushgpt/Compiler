@@ -56,12 +56,11 @@ public class ProcedureDeclaration extends Statement
     }
     
     /**
-     * Compiles the procedure declaration.
+     * Compiles.
      * @param e the emitter
      */
     public void compile(Emitter e)
     {
-        // Procedure declarations are stored in environment, not compiled directly
-        // Compilation of procedure calls and bodies will be handled later
+        //we dont have procedures yet, this is for subroutines
     }
 }

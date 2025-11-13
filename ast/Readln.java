@@ -40,9 +40,9 @@ public class Readln extends Statement
      */
     public void compile(Emitter e)
     {
-        e.emit("li $v0, 5\t#read integer");
+        e.emit("li $v0, 5");
         e.emit("syscall");
-        e.emit("la $t0 var" + varName + "\t#load address of " + varName);
-        e.emit("sw $v0 ($t0)\t#store input in " + varName);
+        e.emit("la $t0 var" + varName);
+        e.emit("sw $v0 ($t0)");
     }
 }

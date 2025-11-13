@@ -37,7 +37,7 @@ public class Variable extends Expression
      */
     public void compile(Emitter e)
     {
-        e.emit("la $t0 var" + name + "\t#load address of " + name);
-        e.emit("lw $v0 ($t0)\t#load value of " + name);
+        e.emit("la $t0 var" + name);
+        e.emit("lw $v0 ($t0)");
     }
 }

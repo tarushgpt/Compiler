@@ -37,6 +37,6 @@ public class Number extends Expression
      */
     public void compile(Emitter e)
     {
-        e.emit("li $v0, " + value + "\t#load immediate " + value);
+        e.emit("li $v0, " + value);
     }
 }

@@ -68,20 +68,20 @@ public class BinOp extends Expression
         e.emitPop("$t0");
         if (op.equals("+"))
         {
-            e.emit("addu $v0, $t0, $v0\t#add");
+            e.emit("addu $v0, $t0, $v0");
         }
         if (op.equals("-"))
         {
-            e.emit("subu $v0, $t0, $v0\t#subtract");
+            e.emit("subu $v0, $t0, $v0");
         }
         if (op.equals("*"))
         {
-            e.emit("mul $v0, $v0, $t0\t#multiply");
+            e.emit("mul $v0, $v0, $t0");
         }
         if (op.equals("/"))
         {
-            e.emit("div $t0, $v0\t#divide");
-            e.emit("mflo $v0\t#get quotient from low level register");
+            e.emit("div $t0, $v0");
+            e.emit("mflo $v0");
         }
     }
 }

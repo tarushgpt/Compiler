@@ -40,7 +40,7 @@ public class Assignment extends Statement
     public void compile(Emitter e)
     {
         exp.compile(e);
-        e.emit("la $t0 var" + var + "\t#load address of " + var);
-        e.emit("sw $v0 ($t0)\t#store value in " + var);
+        e.emit("la $t0 var" + var);
+        e.emit("sw $v0 ($t0)");
     }
 }

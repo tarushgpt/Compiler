@@ -46,10 +46,10 @@ public class While extends Statement
         int labelID = e.nextLabelID();
         String startLabel = "startwhile" + labelID;
         String endLabel = "endwhile" + labelID;
-        e.emit(startLabel + ":\t#start of while loop");
+        e.emit(startLabel + ":");
         condition.compile(e, endLabel);
         body.compile(e);
-        e.emit("j " + startLabel + "\t#jump back to start");
-        e.emit(endLabel + ":\t#end of while loop");
+        e.emit("j " + startLabel);
+        e.emit(endLabel + ":");
     }
 }

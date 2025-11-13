@@ -17,8 +17,7 @@ public class Program
     
     /**
      * Makes a program.
-     * 
-     * @param varDecl the variable declarations
+     * @param varDecl the variable declaration
      * @param procedures the procedures
      * @param stmt the statement
      */
@@ -64,7 +63,7 @@ public class Program
         e.emit(".globl main");
         e.emit("main:");
         stmt.compile(e);
-        e.emit("li $v0, 10\t#exit");
+        e.emit("li $v0, 10");
         e.emit("syscall");
         e.close();
     }

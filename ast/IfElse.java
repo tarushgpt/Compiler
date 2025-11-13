@@ -55,9 +55,9 @@ public class IfElse extends Statement
         String endLabel = "endif" + labelID;
         condition.compile(e, elseLabel);
         thenStmt.compile(e);
-        e.emit("j " + endLabel + "\t#jump to end");
-        e.emit(elseLabel + ":\t#else branch");
+        e.emit("j " + endLabel);
+        e.emit(elseLabel + ":");
         elseStmt.compile(e);
-        e.emit(endLabel + ":\t#end of if-else");
+        e.emit(endLabel + ":");
     }
 }

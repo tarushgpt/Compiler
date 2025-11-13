@@ -38,8 +38,9 @@ public class ParserTest
             //String test8 = "/Users/tarushgupta/Compiler/parserTest8.txt"; //uses procedures
             //String test8_5 = "/Users/tarushgupta/Compiler/parserTest8_5.txt"; //uses procedures
             String test9 = "/Users/tarushgupta/Compiler/parserTest9.txt";
+            //15 5 3 4 5 1-15
             String test9_5 = "/Users/tarushgupta/Compiler/parsertest9_5.txt"; //max.txt (i think?)
-            
+            //80 10 8 0 2 4 6 1 3 6 10 15 Entervalue(5) 5
             ArrayList<String> tests = new ArrayList<String>();
             tests.add(test0);
             tests.add(test1);
@@ -48,11 +49,11 @@ public class ParserTest
             tests.add(test4);
             tests.add(test6);
             tests.add(test9);
-            tests.add(test9_5);
+            tests.add(test9);
             
             java.util.Scanner inputScanner = new java.util.Scanner(System.in);       
             
-            String test = test0; //change this to change the test
+            String test = test9_5; //change this to change the test
             
             System.out.println("Testing: " + test + "\n");
             FileInputStream inStream = new FileInputStream(new File(test));

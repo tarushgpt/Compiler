@@ -15,5 +15,5 @@ comment4.target=Statement\ getStatement()
 comment4.text=\n\ Gets\ the\ statement.\n\ @return\ the\ statement\n
 comment5.params=e
 comment5.target=void\ compile(emitter.Emitter)
-comment5.text=\n\ Compiles\ the\ procedure\ declaration.\n\ @param\ e\ the\ emitter\n
+comment5.text=\n\ Compiles.\n\ @param\ e\ the\ emitter\n
 numComments=6
