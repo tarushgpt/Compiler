@@ -54,6 +54,9 @@ public class For extends Statement
     public void compile(Emitter e)
     {
         int labelID = e.nextLabelID();
+        
+        e.emit("#for loop");
+        
         String startLabel = "startfor" + labelID;
         String endLabel = "endfor" + labelID;
         

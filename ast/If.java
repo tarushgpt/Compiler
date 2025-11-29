@@ -44,6 +44,7 @@ public class If extends Statement
     public void compile(Emitter e)
     {
         int labelID = e.nextLabelID();
+        e.emit("#if");
         String endLabel = "endif" + labelID;
         condition.compile(e, endLabel);
         thenStmt.compile(e);

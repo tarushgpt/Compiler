@@ -64,6 +64,7 @@ public class Condition
      */
     public void compile(Emitter e, String targetLabel)
     {
+        e.emit("#condition");
         left.compile(e);
         e.emitPush("$v0");
         right.compile(e);

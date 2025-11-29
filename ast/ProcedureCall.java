@@ -58,6 +58,23 @@ public class ProcedureCall extends Expression
      */
     public void compile(Emitter e)
     {
-        //we dont have procedures yet, this is for subroutines
+        e.emit("#procedure call: " + name);
+        
+        for (Expression arg : arguments)
+        {
+            arg.compile(e);
+            e.emitPush("$v0");
+        }
+        
+        e.emitPush("$ra");
+        
+        e.emit("jal proc" + name);
+        
+        e.emitPop("$ra");
+        
+        for (int i = 0; i < arguments.size(); i++)
+        {
+            e.emitPop("$t0");
+        }
     }
 }

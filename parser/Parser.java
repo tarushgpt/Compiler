@@ -77,7 +77,9 @@ public class Parser
             return parseNumber();
         } 
         catch (Exception e) 
-        {}
+        {
+            e.printStackTrace();
+        }
         String name = currToken;
         eat(currToken);
         if (currToken.equals("("))
@@ -375,8 +377,26 @@ public class Parser
             List<String> parameters = parseParameters();
             eat(")");
             eat(";");
+            
+            List<String> localVars = new ArrayList<String>();
+            while (currToken.equals("VAR"))
+            {
+                eat("VAR");
+                localVars.add(currToken);
+                eat(currToken);
+                
+                while (currToken.equals(","))
+                {
+                    eat(",");
+                    localVars.add(currToken);
+                    eat(currToken);
+                }
+                
+                eat(";");
+            }
+            
             Statement procstmt = parseStatement();
-            procedures.add(new ProcedureDeclaration(id, parameters, procstmt));
+            procedures.add(new ProcedureDeclaration(id, parameters, localVars, procstmt));
         }
         
         List<Statement> stmts = new ArrayList<Statement>();

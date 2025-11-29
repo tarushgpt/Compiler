@@ -40,6 +40,7 @@ public class Block extends Statement
      */
     public void compile(Emitter e)
     {
+        e.emit("#block");
         for (Statement s : stmts)
         {
             s.compile(e);

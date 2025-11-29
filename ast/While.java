@@ -44,6 +44,7 @@ public class While extends Statement
     public void compile(Emitter e)
     {
         int labelID = e.nextLabelID();
+        e.emit("#while loop");
         String startLabel = "startwhile" + labelID;
         String endLabel = "endwhile" + labelID;
         e.emit(startLabel + ":");

@@ -9,11 +9,12 @@ import java.util.ArrayList;
  * @author Tarush Gupta
  * @version 10/25/25
  */
-public class ProcedureDeclaration extends Statement
+public class ProcedureDeclaration
 {
     private String id;
     private List<String> parameters;
     private Statement stmt;
+    private List<String> localVariables;
     
     /**
      * Declares a procedure.
@@ -26,6 +27,23 @@ public class ProcedureDeclaration extends Statement
         this.id = id;
         this.parameters = parameters;
         this.stmt = stmt;
+        this.localVariables = new ArrayList<String>();
+    }
+    
+    /**
+     * Declares a procedure with local variables.
+     * @param id the id
+     * @param parameters the parameters
+     * @param localVariables the local variables
+     * @param stmt the statement
+     */
+    public ProcedureDeclaration(String id, List<String> parameters, 
+                                List<String> localVariables, Statement stmt)
+    {
+        this.id = id;
+        this.parameters = parameters;
+        this.stmt = stmt;
+        this.localVariables = localVariables;
     }
     
     /**
@@ -38,12 +56,30 @@ public class ProcedureDeclaration extends Statement
     }
     
     /**
+     * Gets the name.
+     * @return the name
+     */
+    public String getName()
+    {
+        return id;
+    }
+    
+    /**
      * Gets the parameters.
      * @return the parameters
      */
     public List<String> getParameters()
     {
         return parameters;
+    }
+    
+    /**
+     * Gets the local variables.
+     * @return the local variables
+     */
+    public List<String> getLocalVariables()
+    {
+        return localVariables;
     }
     
     /**
@@ -61,6 +97,29 @@ public class ProcedureDeclaration extends Statement
      */
     public void compile(Emitter e)
     {
-        //we dont have procedures yet, this is for subroutines
+        e.emit("#procedure declaration: " + id);
+        e.emit("proc" + id + ":");
+        
+        e.emitPush("$zero");
+        
+        for (String localVar : localVariables)
+        {
+            e.emitPush("$zero");
+        }
+        
+        e.setProcedureContext(this);
+        
+        stmt.compile(e);
+        
+        e.clearProcedureContext();
+        
+        e.emitPop("$v0");
+        
+        for (String localVar : localVariables)
+        {
+            e.emitPop("$t0");
+        }
+        
+        e.emit("jr $ra");
     }
 }

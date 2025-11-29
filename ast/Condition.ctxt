@@ -1,10 +1,13 @@
 #BlueJ class context
 comment0.target=Condition
 comment0.text=\n\ Creates\ a\ condition.\n\ \n\ @author\ Tarush\ Gupta\n\ @version\ 1/12/25\n
-comment1.params=env
-comment1.target=boolean\ eval(environment.Environment)
-comment1.text=\n\ Evaluates\ the\ condition.\n\ @param\ env\ the\ environment\n\ @return\ true\ if\ satisfied,\ else\ false\n
-comment2.params=e\ targetLabel
-comment2.target=void\ compile(emitter.Emitter,\ java.lang.String)
-comment2.text=\n\ Compiles.\ \n\ @param\ e\ the\ emitter\n\ @param\ targetLabel\ branch\ here\ if\ false\n
-numComments=3
+comment1.params=left\ relop\ right
+comment1.target=Condition(Expression,\ java.lang.String,\ Expression)
+comment1.text=\n\ Makes\ a\ condition.\n\ @param\ left\ the\ left\ expression\n\ @param\ relop\ \=,\ <>,\ <,\ >,\ <\=,\ >\=\n\ @param\ right\ the\ right\ expression\n
+comment2.params=env
+comment2.target=boolean\ eval(environment.Environment)
+comment2.text=\n\ Evaluates\ the\ condition.\n\ @param\ env\ the\ environment\n\ @return\ true\ if\ satisfied,\ else\ false\n
+comment3.params=e\ targetLabel
+comment3.target=void\ compile(emitter.Emitter,\ java.lang.String)
+comment3.text=\n\ Compiles.\ \n\ @param\ e\ the\ emitter\n\ @param\ targetLabel\ branch\ here\ if\ false\n
+numComments=4

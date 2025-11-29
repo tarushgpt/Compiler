@@ -1,4 +1,5 @@
 //Environment hierarchy test file for flat hierarchy
+//Expected output: 7 3 0
 // global (parent) local (procedure)
 // NOTE FOR MS. DATAR: THIS HAS BEEN MODIFIED BY ME TO WORK WITH THE NEW VARIABLE SYNTAX
 //@author Tarush Gupta 
@@ -23,6 +24,4 @@ BEGIN
     WRITELN(x);
     WRITELN(y);
 END;
-
-//should output 7 then 3 then 0
-
+.

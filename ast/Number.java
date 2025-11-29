@@ -37,6 +37,7 @@ public class Number extends Expression
      */
     public void compile(Emitter e)
     {
+        e.emit("#number");
         e.emit("li $v0, " + value);
     }
 }

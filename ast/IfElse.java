@@ -55,6 +55,7 @@ public class IfElse extends Statement
         String endLabel = "endif" + labelID;
         condition.compile(e, elseLabel);
         thenStmt.compile(e);
+        e.emit("#if else statement");
         e.emit("j " + endLabel);
         e.emit(elseLabel + ":");
         elseStmt.compile(e);

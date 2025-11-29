@@ -1,10 +1,13 @@
 #BlueJ class context
 comment0.target=Assignment
 comment0.text=\n\ Assigns\ a\ value\ to\ a\ variable.\n\n\ @author\ Tarush\ Gupta\n\ @version\ 10/25/25\n
-comment1.params=env
-comment1.target=void\ exec(environment.Environment)
-comment1.text=\n\ Executes\ the\ assignment.\n\ @param\ env\ the\ environment\n
-comment2.params=e
-comment2.target=void\ compile(emitter.Emitter)
-comment2.text=\n\ Compiles\ the\ assignment.\n\ @param\ e\ the\ emitter\ \n
-numComments=3
+comment1.params=v\ e
+comment1.target=Assignment(java.lang.String,\ Expression)
+comment1.text=\n\ Creates\ a\ new\ assignment.\n\ @param\ v\ the\ variable\n\ @param\ e\ the\ expression\n
+comment2.params=env
+comment2.target=void\ exec(environment.Environment)
+comment2.text=\n\ Executes\ the\ assignment.\n\ @param\ env\ the\ environment\n
+comment3.params=e
+comment3.target=void\ compile(emitter.Emitter)
+comment3.text=\n\ Compiles\ the\ assignment.\n\ @param\ e\ the\ emitter\ \n
+numComments=4
