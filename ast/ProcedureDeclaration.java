@@ -1,4 +1,5 @@
 package ast;
+
 import environment.*;
 import emitter.*;
 import java.util.List;
@@ -37,8 +38,7 @@ public class ProcedureDeclaration
      * @param localVariables the local variables
      * @param stmt the statement
      */
-    public ProcedureDeclaration(String id, List<String> parameters, 
-                                List<String> localVariables, Statement stmt)
+    public ProcedureDeclaration(String id, List<String> parameters, List<String> localVariables, Statement stmt)
     {
         this.id = id;
         this.parameters = parameters;
@@ -94,11 +94,14 @@ public class ProcedureDeclaration
     /**
      * Compiles.
      * @param e the emitter
+     *
      */
     public void compile(Emitter e)
     {
         e.emit("#procedure declaration: " + id);
         e.emit("proc" + id + ":");
+        
+        e.setProcedureContext(this);
         
         e.emitPush("$zero");
         
@@ -107,18 +110,16 @@ public class ProcedureDeclaration
             e.emitPush("$zero");
         }
         
-        e.setProcedureContext(this);
-        
         stmt.compile(e);
         
-        e.clearProcedureContext();
-        
-        e.emitPop("$v0");
-        
-        for (String localVar : localVariables)
+        for (int i = 0; i < localVariables.size(); i++)
         {
             e.emitPop("$t0");
         }
+        
+        e.emitPop("$v0");
+        
+        e.clearProcedureContext();
         
         e.emit("jr $ra");
     }

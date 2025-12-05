@@ -61,9 +61,7 @@ public class Environment
     }
     
     /**
-     * Sets a variable. If the variable already exists in current environment, 
-     * set it there. Otherwise, check if it exists in global environment. 
-     * If found in global, set it there. Otherwise, declare new variable in current environment.
+     * Sets a variable.
      * @param variable the variable
      * @param value the value
      */
@@ -84,7 +82,7 @@ public class Environment
     }
     
     /**
-     * Gets a variable. Checks current, then parents.
+     * Gets a variable.ww
      * @param variable the variable name
      * @return the value
      */

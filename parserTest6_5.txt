@@ -1,5 +1,4 @@
-// Readln and  for test file
-// @author Chiling Han
+VAR x, y, sum, i;
 BEGIN
     READLN(x);
     y := x + 1;

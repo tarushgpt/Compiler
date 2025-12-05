@@ -7,6 +7,7 @@
 
 VAR x, y, ignore;
 PROCEDURE foo();
+VAR y;
 BEGIN
     x := 2;
     y := 7;
@@ -14,6 +15,7 @@ BEGIN
     WRITELN(y);
 END;
 PROCEDURE bar();
+VAR y;
 BEGIN
     x := 3;
     y := y + 2;

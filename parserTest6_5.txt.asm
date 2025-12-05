@@ -3,7 +3,6 @@
 
 	.data
 	newline: .asciiz "\n"
-	varb: .word 0
 	varx: .word 0
 	vary: .word 0
 	vari: .word 0
@@ -14,9 +13,9 @@
 __start:
 	#block
 	#block
-	#assignment: x
-	#number
-	li $v0, 2
+	#readln
+	li $v0, 5
+	syscall
 	la $t0 varx
 	sw $v0 ($t0)
 	#assignment: y
@@ -26,17 +25,8 @@ __start:
 	lw $v0 ($t0)
 	subu $sp $sp 4
 	sw $v0 ($sp)
-	#binary operand
 	#number
-	li $v0, 3
-	subu $sp $sp 4
-	sw $v0 ($sp)
-	#variable: x
-	la $t0 varx
-	lw $v0 ($t0)
-	lw $t0 ($sp)
-	addu $sp $sp 4
-	mul $v0, $v0, $t0
+	li $v0, 1
 	lw $t0 ($sp)
 	addu $sp $sp 4
 	addu $v0, $t0, $v0
@@ -76,7 +66,6 @@ __start:
 	la $a0, newline
 	li $v0, 4
 	syscall
-	#if
 	#condition
 	#variable: x
 	la $t0 varx
@@ -88,7 +77,7 @@ __start:
 	lw $v0 ($t0)
 	lw $t0 ($sp)
 	addu $sp $sp 4
-	ble $t0 $v0 endif1
+	ble $t0 $v0 else1
 	#block
 	#writeln
 	#variable: x
@@ -103,6 +92,20 @@ __start:
 	#writeln
 	#variable: y
 	la $t0 vary
+	lw $v0 ($t0)
+	move $a0, $v0
+	li $v0, 1
+	syscall
+	la $a0, newline
+	li $v0, 4
+	syscall
+	#if else statement
+	j endif1
+else1:
+	#block
+	#writeln
+	#variable: x
+	la $t0 varx
 	lw $v0 ($t0)
 	move $a0, $v0
 	li $v0, 1
@@ -125,7 +128,7 @@ startwhile2:
 	subu $sp $sp 4
 	sw $v0 ($sp)
 	#number
-	li $v0, 8
+	li $v0, 10
 	lw $t0 ($sp)
 	addu $sp $sp 4
 	bge $t0 $v0 endwhile2
@@ -148,7 +151,7 @@ startwhile2:
 	subu $sp $sp 4
 	sw $v0 ($sp)
 	#number
-	li $v0, 2
+	li $v0, 1
 	lw $t0 ($sp)
 	addu $sp $sp 4
 	addu $v0, $t0, $v0
@@ -172,7 +175,7 @@ startfor3:
 	subu $sp $sp 4
 	sw $v0 ($sp)
 	#number
-	li $v0, 5
+	li $v0, 3
 	lw $t0 ($sp)
 	addu $sp $sp 4
 	bgt $t0 $v0 endfor3
@@ -209,34 +212,6 @@ startfor3:
 	sw $v0 ($t0)
 	j startfor3
 endfor3:
-	#readln
-	li $v0, 5
-	syscall
-	la $t0 varb
-	sw $v0 ($t0)
-	#if
-	#condition
-	#variable: b
-	la $t0 varb
-	lw $v0 ($t0)
-	subu $sp $sp 4
-	sw $v0 ($sp)
-	#number
-	li $v0, 10
-	lw $t0 ($sp)
-	addu $sp $sp 4
-	bge $t0 $v0 endif4
-	#writeln
-	#variable: b
-	la $t0 varb
-	lw $v0 ($t0)
-	move $a0, $v0
-	li $v0, 1
-	syscall
-	la $a0, newline
-	li $v0, 4
-	syscall
-endif4:
 	li $v0, 10
 	syscall
 	

@@ -156,7 +156,7 @@ public class Emitter
     /**
      * Gets the offset of a local variable from $sp.
      * @param localVarName the local variable name
-     * @return the offset
+     * @return the offset from $sp
      */
     public int getOffset(String localVarName)
     {
@@ -165,27 +165,27 @@ public class Emitter
             throw new RuntimeException("No procedure context set");
         }
         
-        int numLocalVars = currentProcedure.getLocalVariables().size();
+        int numLocals = currentProcedure.getLocalVariables().size();
         int numParams = currentProcedure.getParameters().size();
         
-        if (localVarName.equals(currentProcedure.getName()))
-        {
-            return excessStackHeight + 4 * numLocalVars + 4 * numParams;
-        }
-        
-        for (int i = 0; i < numLocalVars; i++)
+        for (int i = 0; i < numLocals; i++)
         {
             if (currentProcedure.getLocalVariables().get(i).equals(localVarName))
             {
-                return excessStackHeight + 4 * numParams + 4 * (numLocalVars - i - 1);
+                return excessStackHeight - (i + 2) * 4;
             }
+        }
+        
+        if (localVarName.equals(currentProcedure.getName()))
+        {
+            return excessStackHeight - 4;
         }
         
         for (int i = 0; i < numParams; i++)
         {
             if (currentProcedure.getParameters().get(i).equals(localVarName))
             {
-                return excessStackHeight + 4 * (numParams - i - 1);
+                return excessStackHeight + (numParams - 1 - i) * 4;
             }
         }
         

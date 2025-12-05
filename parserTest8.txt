@@ -1,3 +1,4 @@
+VAR x, y, ignore;
 PROCEDURE Add(y,w,z);
 BEGIN
 	WRITELN(y);
@@ -27,7 +28,4 @@ BEGIN
 	WRITELN(x);
 	
 END;
-.
-.
-.
 .

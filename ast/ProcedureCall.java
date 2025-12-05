@@ -36,8 +36,7 @@ public class ProcedureCall extends Expression
         List<String> parameters = procedure.getParameters();
         if (arguments.size() != parameters.size()) 
         {
-            throw new RuntimeException("Procedure " + name + " expects " + 
-                             parameters.size() + " arguments but got " + arguments.size());
+            throw new RuntimeException("Procedure " + name + " expects " + parameters.size() + " arguments but got " + arguments.size());
         }
         Environment procedureEnv = new Environment(env.getGlobal());
         procedureEnv.declareVariable(name, 0);
@@ -59,6 +58,8 @@ public class ProcedureCall extends Expression
     public void compile(Emitter e)
     {
         e.emit("#procedure call: " + name);
+
+        e.emitPush("$ra");
         
         for (Expression arg : arguments)
         {
@@ -66,15 +67,13 @@ public class ProcedureCall extends Expression
             e.emitPush("$v0");
         }
         
-        e.emitPush("$ra");
-        
         e.emit("jal proc" + name);
-        
-        e.emitPop("$ra");
         
         for (int i = 0; i < arguments.size(); i++)
         {
             e.emitPop("$t0");
         }
+        
+        e.emitPop("$ra");
     }
 }

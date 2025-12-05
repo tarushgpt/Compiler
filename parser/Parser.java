@@ -72,14 +72,12 @@ public class Parser
             return num;
         }
         
-        try 
+        char firstChar = currToken.charAt(0);
+        if (Character.isDigit(firstChar))
         {
             return parseNumber();
-        } 
-        catch (Exception e) 
-        {
-            e.printStackTrace();
         }
+
         String name = currToken;
         eat(currToken);
         if (currToken.equals("("))

@@ -52,6 +52,7 @@ public class Program
         e.emitHeader("Tarush Gupta");
         
         e.emit(".data");
+        e.emit("newline: .asciiz \"\\n\"");
         Map<String, Integer> variables = varDecl.getVariables();
         for (Map.Entry<String, Integer> entry : variables.entrySet())
         {
@@ -60,11 +61,24 @@ public class Program
         e.emit("");
         
         e.emit(".text");
-        e.emit(".globl main");
-        e.emit("main:");
+        e.emit(".globl __start");
+        e.emit("__start:");
+        
+
         stmt.compile(e);
+        
+
         e.emit("li $v0, 10");
         e.emit("syscall");
+        e.emit("");
+        
+        for (ProcedureDeclaration proc : procedures)
+        {
+            proc.compile(e);
+            e.emit("");
+        }
+        
+        
         e.close();
     }
 }

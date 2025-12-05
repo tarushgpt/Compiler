@@ -24,5 +24,5 @@ comment7.target=Statement\ getStatement()
 comment7.text=\n\ Gets\ the\ statement.\n\ @return\ the\ statement\n
 comment8.params=e
 comment8.target=void\ compile(emitter.Emitter)
-comment8.text=\n\ Compiles.\n\ @param\ e\ the\ emitter\n
+comment8.text=\n\ Compiles.\n\ @param\ e\ the\ emitter\n\n
 numComments=9

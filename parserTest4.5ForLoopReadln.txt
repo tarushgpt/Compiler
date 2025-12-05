@@ -1,5 +1,4 @@
-// Test File for for and readln
-// @author Ogden, Ian 24iano_students_harker_org
+VAR x, y;
 BEGIN
     READLN(x);
     WRITELN(x + x);
