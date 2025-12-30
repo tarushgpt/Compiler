@@ -47,8 +47,17 @@ public class ParserTest
         String test12 = "/Users/tarushgupta/Compiler/parserTest12.txt"; //9
         String test13 = "/Users/tarushgupta/Compiler/parserTest13.txt"; //2 3 4
         
+        String proctest1 = "/Users/tarushgupta/Compiler/parserTestProc1.txt";
+        String proctest2 = "/Users/tarushgupta/Compiler/parserTestProc2.txt";
+        String proctest3 = "/Users/tarushgupta/Compiler/parserTestProc3.txt";
+        String proctest4 = "/Users/tarushgupta/Compiler/parserTestProc4.txt";
+        String proctest5 = "/Users/tarushgupta/Compiler/parserTestProc5.txt";
+        String proctest6 = "/Users/tarushgupta/Compiler/parserTestProc6.txt";
+        String proctest7 = "/Users/tarushgupta/Compiler/parserTestProc7.txt";
+        String proctest8 = "/Users/tarushgupta/Compiler/parserTestProc8.txt";
+        
         ArrayList<String> tests = new ArrayList<String>();
-        tests.add(test0);
+        /*tests.add(test0);
         tests.add(test1);
         tests.add(test2);
         tests.add(test3);
@@ -65,9 +74,18 @@ public class ParserTest
         tests.add(test11);
         tests.add(test12);
         tests.add(test13);
-        
+        */
+        tests.add(proctest1);
+        tests.add(proctest2);
+        tests.add(proctest3);
+        tests.add(proctest4);
+        tests.add(proctest5);
+        tests.add(proctest6);
+        tests.add(proctest7);
+        tests.add(proctest8);
+           
         int testNum = 0;
-        for (String test : tests)
+        for (String test: tests)
         {
             testNum++;
             System.out.println("Test " + testNum + ": " + test);

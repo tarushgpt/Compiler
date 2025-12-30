@@ -43,7 +43,16 @@ public class Readln extends Statement
         e.emit("#readln");
         e.emit("li $v0, 5");
         e.emit("syscall");
-        e.emit("la $t0 var" + varName);
-        e.emit("sw $v0 ($t0)");
+        
+        if (e.isLocalVariable(varName))
+        {
+            int offset = e.getOffset(varName);
+            e.emit("sw $v0 " + offset + "($sp)");
+        }
+        else
+        {
+            e.emit("la $t0 var" + varName);
+            e.emit("sw $v0 ($t0)");
+        }
     }
 }

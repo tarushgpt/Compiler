@@ -1,10 +1,13 @@
 #BlueJ class context
 comment0.target=Program
 comment0.text=\n\ Makes\ a\ program.\n\n\ @author\ Tarush\ Gupta\n\ @version\ 10/25/25\n
-comment1.params=env
-comment1.target=void\ exec(environment.Environment)
-comment1.text=\n\ Executes.\n\ @param\ env\ the\ environment\n
-comment2.params=filename
-comment2.target=void\ compile(java.lang.String)
-comment2.text=\n\ Compiles.\n\ @param\ filename\ the\ output\ file\ name\n
-numComments=3
+comment1.params=varDecl\ procedures\ stmt
+comment1.target=Program(VarDeclaration,\ java.util.List,\ Statement)
+comment1.text=\n\ Makes\ a\ program.\n\ @param\ varDecl\ the\ variable\ declaration\n\ @param\ procedures\ the\ procedures\n\ @param\ stmt\ the\ statement\n
+comment2.params=env
+comment2.target=void\ exec(environment.Environment)
+comment2.text=\n\ Executes.\n\ @param\ env\ the\ environment\n
+comment3.params=filename
+comment3.target=void\ compile(java.lang.String)
+comment3.text=\n\ Compiles.\n\ @param\ filename\ the\ output\ file\ name\n
+numComments=4

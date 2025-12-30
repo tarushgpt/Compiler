@@ -1,0 +1,6 @@
+VAR x, ignore;
+PROCEDURE printSquare(n);
+BEGINWRITELN(n * n);
+END;BEGINx := 1;ignore := printSquare(x + 2);END;.
+
+//output 9

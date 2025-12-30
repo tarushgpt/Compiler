@@ -1,13 +1,11 @@
 # @author Tarush Gupta
-# @date 2025-12-04
+# @date 2025-12-12
 
 	.data
 	newline: .asciiz "\n"
-	varb: .word 0
 	varx: .word 0
 	vary: .word 0
-	vari: .word 0
-	varsum: .word 0
+	varignore: .word 0
 	
 	.text
 	.globl __start
@@ -26,17 +24,8 @@ __start:
 	lw $v0 ($t0)
 	subu $sp $sp 4
 	sw $v0 ($sp)
-	#binary operand
 	#number
-	li $v0, 3
-	subu $sp $sp 4
-	sw $v0 ($sp)
-	#variable: x
-	la $t0 varx
-	lw $v0 ($t0)
-	lw $t0 ($sp)
-	addu $sp $sp 4
-	mul $v0, $v0, $t0
+	li $v0, 1
 	lw $t0 ($sp)
 	addu $sp $sp 4
 	addu $v0, $t0, $v0
@@ -125,7 +114,7 @@ startwhile2:
 	subu $sp $sp 4
 	sw $v0 ($sp)
 	#number
-	li $v0, 8
+	li $v0, 10
 	lw $t0 ($sp)
 	addu $sp $sp 4
 	bge $t0 $v0 endwhile2
@@ -148,7 +137,7 @@ startwhile2:
 	subu $sp $sp 4
 	sw $v0 ($sp)
 	#number
-	li $v0, 2
+	li $v0, 1
 	lw $t0 ($sp)
 	addu $sp $sp 4
 	addu $v0, $t0, $v0
@@ -156,87 +145,105 @@ startwhile2:
 	sw $v0 ($t0)
 	j startwhile2
 endwhile2:
-	#assignment: sum
-	#number
-	li $v0, 0
-	la $t0 varsum
-	sw $v0 ($t0)
-	#for loop
-	#number
+	#writeln
+	#variable: y
+	la $t0 vary
+	lw $v0 ($t0)
+	move $a0, $v0
 	li $v0, 1
-	la $t0 vari
-	sw $v0 ($t0)
-startfor3:
-	la $t0 vari
+	syscall
+	la $a0, newline
+	li $v0, 4
+	syscall
+	#assignment: ignore
+	#procedure call: Add
+	subu $sp $sp 4
+	sw $ra ($sp)
+	#number
+	li $v0, 4
+	subu $sp $sp 4
+	sw $v0 ($sp)
+	#variable: x
+	la $t0 varx
 	lw $v0 ($t0)
 	subu $sp $sp 4
 	sw $v0 ($sp)
-	#number
-	li $v0, 5
+	#variable: y
+	la $t0 vary
+	lw $v0 ($t0)
+	subu $sp $sp 4
+	sw $v0 ($sp)
+	jal procAdd
 	lw $t0 ($sp)
 	addu $sp $sp 4
-	bgt $t0 $v0 endfor3
+	lw $t0 ($sp)
+	addu $sp $sp 4
+	lw $t0 ($sp)
+	addu $sp $sp 4
+	lw $ra ($sp)
+	addu $sp $sp 4
+	la $t0 varignore
+	sw $v0 ($t0)
+	#writeln
+	#variable: x
+	la $t0 varx
+	lw $v0 ($t0)
+	move $a0, $v0
+	li $v0, 1
+	syscall
+	la $a0, newline
+	li $v0, 4
+	syscall
+	li $v0, 10
+	syscall
+	
+	#procedure declaration: Add
+procAdd:
+	subu $sp $sp 4
+	sw $zero ($sp)
 	#block
-	#assignment: sum
+	#writeln
+	#variable: y
+	lw $v0 12($sp)
+	move $a0, $v0
+	li $v0, 1
+	syscall
+	la $a0, newline
+	li $v0, 4
+	syscall
+	#writeln
+	#variable: w
+	lw $v0 8($sp)
+	move $a0, $v0
+	li $v0, 1
+	syscall
+	la $a0, newline
+	li $v0, 4
+	syscall
+	#writeln
+	#variable: z
+	lw $v0 4($sp)
+	move $a0, $v0
+	li $v0, 1
+	syscall
+	la $a0, newline
+	li $v0, 4
+	syscall
+	#assignment: x
 	#binary operand
-	#variable: sum
-	la $t0 varsum
+	#variable: x
+	la $t0 varx
 	lw $v0 ($t0)
 	subu $sp $sp 4
 	sw $v0 ($sp)
-	#variable: i
-	la $t0 vari
-	lw $v0 ($t0)
+	#variable: y
+	lw $v0 16($sp)
 	lw $t0 ($sp)
 	addu $sp $sp 4
 	addu $v0, $t0, $v0
-	la $t0 varsum
+	la $t0 varx
 	sw $v0 ($t0)
-	#writeln
-	#variable: sum
-	la $t0 varsum
-	lw $v0 ($t0)
-	move $a0, $v0
-	li $v0, 1
-	syscall
-	la $a0, newline
-	li $v0, 4
-	syscall
-	la $t0 vari
-	lw $v0 ($t0)
-	addi $v0 $v0 1
-	la $t0 vari
-	sw $v0 ($t0)
-	j startfor3
-endfor3:
-	#readln
-	li $v0, 5
-	syscall
-	la $t0 varb
-	sw $v0 ($t0)
-	#if
-	#condition
-	#variable: b
-	la $t0 varb
-	lw $v0 ($t0)
-	subu $sp $sp 4
-	sw $v0 ($sp)
-	#number
-	li $v0, 10
-	lw $t0 ($sp)
+	lw $v0 ($sp)
 	addu $sp $sp 4
-	bge $t0 $v0 endif4
-	#writeln
-	#variable: b
-	la $t0 varb
-	lw $v0 ($t0)
-	move $a0, $v0
-	li $v0, 1
-	syscall
-	la $a0, newline
-	li $v0, 4
-	syscall
-endif4:
-	li $v0, 10
-	syscall
+	jr $ra
 	

@@ -1,0 +1,14 @@
+VAR count, max, ignore;
+PROCEDURE countUp(count, max);
+BEGINIF count <= max THEN
+BEGIN	WRITELN(count);
+	ignore := countUp(count + 1, max);
+END;
+END;
+BEGIN
+count:=1;
+max:=5;ignore := countUp(count + 1, max);
+WRITELN(count);END;
+.
+
+//output 2,3,4,5 then 1

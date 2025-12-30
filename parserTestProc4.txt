@@ -1,0 +1,4 @@
+VAR n, ignore;
+PROCEDURE print(n);WRITELN(n);BEGINn := 3;ignore := print(5);WRITELN(n);END;.
+
+// output 5 then 3
